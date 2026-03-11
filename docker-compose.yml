@@ -13,10 +13,12 @@ services:
       BETTER_AUTH_SECRET: "${BETTER_AUTH_SECRET:?BETTER_AUTH_SECRET must be set}"
     volumes:
       - paperclip-data:/paperclip
-    depends_on:
-      db:
-        condition: service_healthy
+    networks:
+      - dokploy-network
 
 volumes:
-  pgdata:
   paperclip-data:
+
+networks:
+  dokploy-network:
+    external: true
